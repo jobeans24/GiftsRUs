@@ -1,0 +1,16 @@
+[
+    {
+        "street": "123 Main St",
+        "aptSuite": "Apt 1",
+        "city": "Mascoutah",
+        "state": "IL",
+        "zipCode": 62225
+      },
+      {
+        "street": "456 Elm St",
+        "aptSuite": null,
+        "city": "Ellicott City",
+        "state": "MD",
+        "zipCode": 21042
+      }
+]

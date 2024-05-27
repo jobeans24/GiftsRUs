@@ -7,7 +7,7 @@ const Gift = require('./Gift');
 const Location = require('./Location');
 const Purchased = require('./Purchased');
 const User = require('./User');
-const Cart = require('./Cart');
+const Cart = require('./ShoppingCart');
 
 
 // A User has one Cart

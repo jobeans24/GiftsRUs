@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Birthday Party",
+        "date": "2024-06-01",
+        "type": "Party",
+        "locationId": 1,
+        "userId": 1
+      },
+      {
+        "name": "Wedding",
+        "date": "2024-07-15",
+        "type": "Wedding",
+        "locationId": 2,
+        "userId": 2
+      }
+]

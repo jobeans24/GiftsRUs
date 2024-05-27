@@ -1,6 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
+const User = require('./User');
+const Event = require('./Event');
+
+class Purchased extends Model {}
+
 Purchased.init(
     {
         id: {
