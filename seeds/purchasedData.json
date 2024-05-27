@@ -1,0 +1,14 @@
+[
+    {
+        "date": "2024-06-02",
+        "userId": 1,
+        "eventId": 1,
+        "giftIds": [{ "giftId": 1, "quantity": 2 }]
+      },
+      {
+        "date": "2024-07-16",
+        "userId": 2,
+        "eventId": 2,
+        "giftIds": [{ "giftId": 2, "quantity": 1 }]
+      }
+]
