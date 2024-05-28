@@ -1,0 +1,8 @@
+[
+    {
+        "giftIds": [{ "giftId": 1, "quantity": 1 }, { "giftId": 2, "quantity": 2 }]
+      },
+      {
+        "giftIds": [{ "giftId": 2, "quantity": 3 }]
+      }
+]

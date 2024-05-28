@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Gift Card",
+        "price": 50.00,
+        "website": "https://www.amazon.com",
+        "isCertificate": true
+      },
+      {
+        "name": "Flowers",
+        "price": 79.00,
+        "website": "https://bouqs.com/flowers/tulips/rainbow-tulips",
+        "isCertificate": false
+      }
+]
