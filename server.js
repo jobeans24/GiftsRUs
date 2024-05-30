@@ -8,18 +8,21 @@ const helpers = require('./utils/helpers');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
+// import seeds file
+const seedDatabase = require('./seeds/seed');
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 const SESSION_SECRET = process.env.SESS_SECRET || 'Super secret secret';
-const SESSIOIN_AGE = process.env.SESS_AGE || 300000;
+const SESSION_AGE = process.env.SESS_AGE || 300000;
 
 const hbs = exphbs.create({ helpers });
 
 const sess = {
     secret: SESSION_SECRET,
     cookie: {
-        maxAge: SESSIOIN_AGE,
+        maxAge: SESSION_AGE,
         httpOnly: true,
         secure: false,
         sameSite: 'strict',
