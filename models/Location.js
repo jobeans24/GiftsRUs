@@ -27,7 +27,10 @@ Location.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [2],
+                len: {
+                  args: [2, 2],
+                  msg: "State code must be exactly 2 characters long",
+                },
             },
         },
         zipCode: {
