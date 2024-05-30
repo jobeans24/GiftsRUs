@@ -15,14 +15,14 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const SESSION_SECRET = process.env.SESS_SECRET || 'Super secret secret';
-const SESSIOIN_AGE = process.env.SESS_AGE || 300000;
+const SESSION_AGE = process.env.SESS_AGE || 300000;
 
-//const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create({ helpers });
 
 const sess = {
     secret: SESSION_SECRET,
     cookie: {
-        maxAge: SESSIOIN_AGE,
+        maxAge: SESSION_AGE,
         httpOnly: true,
         secure: false,
         sameSite: 'strict',
