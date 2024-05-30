@@ -8,32 +8,27 @@ const helpers = require('./utils/helpers');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-<<<<<<< HEAD
 // import seeds file
 const seedDatabase = require('./seeds/seed');
 
-=======
->>>>>>> 5c3c6fb (Added server.js, test files for models and model cleanup)
+
+// import seeds file
+const seedDatabase = require('./seeds/seed');
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 const SESSION_SECRET = process.env.SESS_SECRET || 'Super secret secret';
-<<<<<<< HEAD
+
 const SESSION_AGE = process.env.SESS_AGE || 300000;
-=======
-const SESSIOIN_AGE = process.env.SESS_AGE || 300000;
->>>>>>> 5c3c6fb (Added server.js, test files for models and model cleanup)
 
 const hbs = exphbs.create({ helpers });
 
 const sess = {
     secret: SESSION_SECRET,
     cookie: {
-<<<<<<< HEAD
+
         maxAge: SESSION_AGE,
-=======
-        maxAge: SESSIOIN_AGE,
->>>>>>> 5c3c6fb (Added server.js, test files for models and model cleanup)
         httpOnly: true,
         secure: false,
         sameSite: 'strict',
