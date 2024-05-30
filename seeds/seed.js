@@ -20,7 +20,8 @@ const seedDatabase = async () => {
     await Cart.bulkCreate(cartData, { individualHooks: true });
     await Purchased.bulkCreate(purchasedData);
   
-    process.exit(0);
   };
   
-  seedDatabase();
+// removed the seeDatabase call and process.exit(0) from here  
+// export the seed data so that it is available in the server.js file
+module.exports = seedDatabase;  
