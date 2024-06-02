@@ -7,15 +7,17 @@
     "bcrypt": "^5.1.1",
     "connect-session-sequelize": "^7.1.7",
     "dotenv": "^16.4.5",
-    "pg": "^8.11.5",
     "express": "^4.17.1",
+    "express-handlebars": "^5.3.3",
     "express-session": "^1.17.2",
-    "express-handlebars": "^5.3.3"
+    "pg": "^8.11.5"
   },
   "devDependencies": {
     "jest": "^29.7.0",
+    "node-mocks-http": "^1.14.1",
     "sequelize": "^6.37.3",
     "sequelize-mock": "^0.10.2",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "supertest": "^7.0.0"    
   }
 }
