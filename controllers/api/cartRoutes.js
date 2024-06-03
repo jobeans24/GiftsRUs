@@ -26,8 +26,8 @@ router.get('/', withAuth, async (req, res) => {
 }
 );
 
-// GET a single cart item
-router.post('/', withAuth, async (req, res) => {
+
+router.post('/', withAuth, async (req, res) => { // CREATE a cart item
     try {
         const newCart = await Cart.create({
             ...req.body,
