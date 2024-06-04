@@ -1,0 +1,54 @@
+<div class="card">
+    <div class="card-header">
+        <h2>Dashboard</h2>
+    </div>
+    <div class="card-body">
+        <a href="/newEvent" class="btn btn-primary">Create New Event</a>
+        <a href="/cart" class="btn btn-primary">View Cart</a>
+        <a href="/registry" class="btn btn-primary">View Registry</a>
+        <a href="/login" class="btn btn-primary">Login</a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h2>Events</h2>
+    </div>
+    <div class="card-body">
+        {{#each events}}
+            <div class="card">
+                <div class="card-header">
+                    <h3>{{name}}</h3>
+                </div>
+                <div class="card-body">
+                    <p>{{date}}</p>
+                    <p>{{location}}</p>
+                    <a href="/registry/{{id}}" class="btn btn-primary">View Registry</a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h2>Registry</h2>
+    </div>
+    <div class="card-body">
+        {{#each registry}}
+            <div class="card">
+                <div class="card-header">
+                    <h3>{{name}}</h3>
+                </div>
+                <div class="card-body">
+                    <p>{{description}}</p>
+                    <p>{{price}}</p>
+                    <p>{{quantity}}</p>
+                    <button class="btn btn-primary" onclick="addToCart('{{id}}')">Add to Cart</button>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
+
+<script src="/js/dashboard.js"></script>
