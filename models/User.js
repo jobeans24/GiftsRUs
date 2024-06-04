@@ -5,7 +5,7 @@ const sequelize = require('../config/connection');
 const Cart = require('./ShoppingCart');
 
 class User extends Model {
-    ckeckPassword(loginPwd) {
+    checkPassword(loginPwd) {
         return bcrypt.compareSync(loginPwd, this.password);
     }
 }
