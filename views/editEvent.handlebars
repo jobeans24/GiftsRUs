@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-header">
+        <h2>Edit Event</h2>
+    </div>
+    <form class="form-label" id="edit-event-form">
+        <div>
+            <label class="form-label" for="event-name-input">Event Name</label>
+            <input id="event-name-input" type="text" value="{{name}}" />
+        </div>
+        <div>
+            <label class="form-label" for="event-date-input">Event Date</label>
+            <input id="event-date-input" type="date" value="{{date}}" />
+        </div>
+        <div>
+            <label class="form-label" for="event-location-input">Event Location</label>
+            <input id="event-location-input" type="text" value="{{location}}" />
+        </div>
+        <button id="edit-event-btn" class="btn" type="submit">Edit Event</button>
+    </form>
+</div>
+<script src="/js/editEvent.js"></script>
