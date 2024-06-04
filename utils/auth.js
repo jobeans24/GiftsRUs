@@ -1,30 +1,26 @@
-const checkAuth = (req, res, next, loggedInAction, notLoggedInAction) => {
-    if (!req.session.logged_in) {
-        notLoggedInAction(res);
+// withAuth - if not logged in present login page
+const withAuth = (req, res, next) => {
+    if(!req.session.logged_in) {
+        res.redirect('/login');
     } else {
-        loggedInAction(res, next);
+        next();
     }
 };
 
-const withAuth = (req, res, next) => {
-    checkAuth(req, res, next, 
-        (res, next) => next(), 
-        (res) => res.redirect('/login')
-    );
-};
-
 const apiAuth = (req, res, next) => {
-    checkAuth(req, res, next, 
-        (res, next) => next(), 
-        (res) => res.status(403).json({msg: 'you are not logged in - please log in'})
-    );
+    if (!req.session.logged_in) {
+        res.status(403).json({msg: 'you are not logged in - please log in'})
+    } else {
+        next();
+    }
 };
 
 const withoutAuth = (req, res, next) => {
-    checkAuth(req, res, next, 
-        (res) => res.redirect('/'), 
-        (res, next) => next()
-    );
+    if (!req.session.logged_in) {
+        next();
+    } else {
+        res.redirect('/');
+    }
 };
 
 module.exports = {
