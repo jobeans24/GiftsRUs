@@ -1,67 +1,70 @@
-const { Sequelize } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Sequelize } = require("sequelize");
+const sequelize = require("../config/connection");
 
 // Import all models
-const Event = require('./Event');
-const Gift = require('./Gift');
-const Location = require('./Location');
-const Purchased = require('./Purchased');
-const User = require('./User');
-const Cart = require('./ShoppingCart');
-
+const Event = require("./Event");
+const Gift = require("./Gift");
+const Location = require("./Location");
+const Purchased = require("./Purchased");
+const User = require("./User");
+const Cart = require("./ShoppingCart");
 
 // A User has one Cart
 User.hasOne(Cart, {
-    foreignKey: 'userId'
+  foreignKey: "userId",
 });
 
 Cart.belongsTo(User, {
-    foreignKey: 'userId'
+  foreignKey: "userId",
 });
 
 // A User can have many Events
 User.hasMany(Event, {
-    foreignKey: 'userId'
+  foreignKey: "userId",
 });
 
 Event.belongsTo(User, {
-    foreignKey: 'userId'
+  foreignKey: "userId",
 });
 
 // An Event belongs to a Location
 Location.hasMany(Event, {
-    foreignKey: 'locationId'
+  foreignKey: "locationId",
 });
 
 Event.belongsTo(Location, {
-    foreignKey: 'locationId'
+  foreignKey: "locationId",
 });
 
 // A User can have many Purchased items
 User.hasMany(Purchased, {
-    foreignKey: 'userId'
+  foreignKey: "userId",
 });
 
 Purchased.belongsTo(User, {
-    foreignKey: 'userId'
+  foreignKey: "userId",
 });
 
 // An Event can have many Purchased items
 Event.hasMany(Purchased, {
-    foreignKey: 'eventId'
+  foreignKey: "eventId",
 });
 
 Purchased.belongsTo(Event, {
-    foreignKey: 'eventId'
+  foreignKey: "eventId",
 });
+
+Event.hasMany(Gift, { foreignKey: "eventId" });
+
+Gift.belongsTo(Event, { foreignKey: "eventId" });
 
 // Export models and sequelize connection
 module.exports = {
-    Cart,
-    Event,
-    Gift,
-    Location,
-    Purchased,
-    User,
-    sequelize
+  Cart,
+  Event,
+  Gift,
+  Location,
+  Purchased,
+  User,
+  sequelize,
 };

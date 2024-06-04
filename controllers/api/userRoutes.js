@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../../models/User');
+const { User } = require('../../models');
 
 // GET all users
 router.get('/', async (req, res) => {
@@ -32,6 +32,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const userData = await User.create(req.body);
+        console.log(userData);
         //save session data
         req.session.save(() => {
             req.session.user_id = userData.id;
@@ -105,7 +106,7 @@ router.post('/login', async (req, res) => {
     try {
         const userData = await User.findOne({
             where: {
-                userName: req.body.userName
+                user_name: req.body.userName
             },
         });
 
@@ -115,23 +116,29 @@ router.post('/login', async (req, res) => {
         }
 
         const validPassword = await userData.checkPassword(req.body.password);
+        console.log("password:" + validPassword);
 
         if (!validPassword) {
             res.status(400).json({message: 'Incorrect user name or password - please try again!'})
             return;            
         }
 
-        console.log('Save session data');
-        req.session.save(() => {
-            req.session.user_id = userData.id;
-            req.session.userName = userData.userName;
-            req.session.logged_in = true;
+        console.log(userData);
+        if(userData) {
+            console.log('Save session data');
+            req.session.save(() => {
+                req.session.user_id = userData.id;
+                req.session.userName = userData.userName;
+                req.session.logged_in = true;
             
-            res.status(200).json({
-                userData,
-                message: 'You are logged in!',
+                res.status(200).json({
+                    userData,
+                    message: 'You are logged in!',
+                });
             });
-        });
+        } else {
+            console.error("No user returned");
+        }
     } catch(err) {
         res.status(400).json(err);
     }
