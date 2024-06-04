@@ -1,3 +1,4 @@
+
 const router = require("express").Router();
 const { User, Gift, Purchased, Event } = require("../models");
 const { withAuth, withoutAuth } = require("../utils/auth");
@@ -16,6 +17,7 @@ router.get("/", async (req, res) => {
         },
       ],
     });
+
 
     const events = eventData.map((event) => event.get({ plain: true }));
 
@@ -73,6 +75,7 @@ router.get("/login", withoutAuth, (req, res) => {
     res.status(500).json(err);
   }
 });
+
 
 // sign up
 router.get("/signup", withoutAuth, (req, res) => {
