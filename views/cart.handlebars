@@ -1,0 +1,19 @@
+<div class="cart">
+    <h1>Cart</h1>
+    {{#each items}}
+        {{#if event}}
+            <h2>{{event}}</h2> 
+            <p> 
+                <span>{{name}}</span>
+                <span>{{description}}</span>
+                <span>{{quantity}}</span>
+                <span>{{price}}</span>
+            </p>
+            <a href="/registry">Add More Items</a>
+            <button class="remove-button" onclick="removeFromCart('{{event}}')">Remove</button>
+            <button class="checkout-button" onclick="checkout('{{event}}')">Checkout</button>
+        {{/if}}
+    {{/each}}
+    <p>Total: {{calculateTotal}}</p>
+</div>
+<script src="/js/cart.js"></script>
