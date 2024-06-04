@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { Gift, Purchase, Registry } = require('../models');
-const withAuth = require('../utils/auth');
+const { withAuth } = require('../utils/auth');
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const registryData = await Registry.findAll({
         include: [

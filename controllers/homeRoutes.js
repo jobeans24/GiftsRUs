@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { User, Gift, Purchase, Registry } = require('../models');
-const withAuth = require('../utils/auth');
+const { withAuth, withoutAuth } = require('../utils/auth');
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {    
     try {
         const registryData = await Registry.findAll({
         include: [
@@ -69,21 +69,23 @@ router.get('/edit/:id', withAuth, async (req, res) => {
     }
 );
 
-router.get('/login', withouthAuth, async (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect('/');
-    return;
-  }
-    res.render('login');
-});
-
-router.get('/signup', withouthAuth, async (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect('/');
-    return;
-  }
-    res.render('signup');
-});
+// login
+router.get('/login', withoutAuth, (req, res) => {
+    try {
+        res.render('login');
+    } catch (err) {
+        res.status(500).json(err);
+    }
+  });
+  
+  // sign up
+  router.get('/signup', withoutAuth, (req, res) => {
+    try {
+        res.render('signup');
+    } catch (err) {
+        res.status(500).json(err);
+    }
+  });
 
 module.exports = router;
 
