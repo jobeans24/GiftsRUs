@@ -81,7 +81,7 @@ router.delete('/:id', async (req, res) => {
             return;
         }
         res.status(200).json(userData);
-        
+
         // destory session
         if (req.session.logged_in) {
             req.session.destroy(() => {
