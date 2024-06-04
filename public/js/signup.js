@@ -1,12 +1,17 @@
 const signupFormHandler = async function (event) {
     event.preventDefault();
 
-    //TODO: add form input names for sign up if different
     const firstNameEl = document.querySelector('#firstName-input-signup').value.trim(); 
     const lastNameEl = document.querySelector('#lastName-input-signup').value.trim(); 
     const emailAddressEl = document.querySelector('#emailAddress-input-signup').value.trim(); 
     const userNameEl = document.querySelector('#userName-input-signup').value.trim();
     const passwordEl = document.querySelector('#password-input-signup').value.trim();
+
+    console.log(firstNameEl);
+    console.log(lastNameEl);
+    console.log(emailAddressEl);
+    console.log(userNameEl);
+    console.log(passwordEl);
 
     if(passwordEl.length >= 8 && userNameEl) {
         try {
@@ -15,7 +20,7 @@ const signupFormHandler = async function (event) {
                 body: JSON.stringify({
                     firstName: firstNameEl,
                     lastName: lastNameEl,
-                    emailAddressEl: emailAddressEl,
+                    emailAddress: emailAddressEl,
                     userName: userNameEl,
                     password: passwordEl,
                 }),

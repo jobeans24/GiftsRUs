@@ -24,4 +24,5 @@ const seedDatabase = async () => {
   
 // removed the seeDatabase call and process.exit(0) from here  
 // export the seed data so that it is available in the server.js file
+//seedDatabase();
 module.exports = seedDatabase;  
