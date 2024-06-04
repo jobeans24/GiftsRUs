@@ -1,72 +1,67 @@
-const router = require('express').Router();
-const { Gift, Purchase, Registry } = require('../models');
-const { withAuth } = require('../utils/auth');
+const router = require("express").Router();
+const { Gift, Purchase, Event } = require("../models");
+const { withAuth } = require("../utils/auth");
 
-router.get('/', async (req, res) => {
-    try {
-        const registryData = await Registry.findAll({
-        include: [
-            {
-            model: Gift,
-            attributes: ['name', 'price', 'store', 'category', 'image'],
-            },
-            {
-            model: Purchase,
-            attributes: ['id', 'date', 'quantity', 'gift_id'],
-            },
-        ],
-        });
-    
-        const registries = registryData.map((registry) =>
-        registry.get({ plain: true })
-        );
-    
-        res.render('dashboard', {
-        registries,
-        logged_in: req.session.logged_in,
-        });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-    }
-);
+router.get("/", async (req, res) => {
+  try {
+    const eventData = await Event.findAll({
+      include: [
+        {
+          model: Gift,
+          attributes: ["name", "price", "store", "category", "image"],
+        },
+        {
+          model: Purchase,
+          attributes: ["id", "date", "quantity", "gift_id"],
+        },
+      ],
+    });
 
-router.get('/new', withAuth, async (req, res) => {
-    try {
-        res.render('newRegistry', {
-        logged_in: req.session.logged_in,
-        });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-    }
-);
+    const events = eventData.map((event) => event.get({ plain: true }));
 
-router.get('/edit/:id', withAuth, async (req, res) => {
-    try {
-        const registryData = await Registry.findByPk(req.params.id, {
-        include: [
-            {
-            model: Gift,
-            attributes: ['name', 'price', 'store', 'category', 'image'],
-            },
-            {
-            model: Purchase,
-            attributes: ['id', 'date', 'quantity', 'gift_id'],
-            },
-        ],
-        });
-    
-        const registry = registryData.get({ plain: true });
-    
-        res.render('editRegistry', {
-        ...registry,
-        logged_in: req.session.logged_in,
-        });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-    }
-);
+    res.render("dashboard", {
+      events,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/new", withAuth, async (req, res) => {
+  try {
+    res.render("newEvent", {
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/edit/:id", withAuth, async (req, res) => {
+  try {
+    const eventData = await Event.findByPk(req.params.id, {
+      include: [
+        {
+          model: Gift,
+          attributes: ["name", "price", "store", "category", "image"],
+        },
+        {
+          model: Purchase,
+          attributes: ["id", "date", "quantity", "gift_id"],
+        },
+      ],
+    });
+
+    const event = eventData.get({ plain: true });
+
+    res.render("editEvent", {
+      ...event,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;
