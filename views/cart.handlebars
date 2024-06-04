@@ -1,19 +1,28 @@
 <div class="cart">
-    <h1>Cart</h1>
-    {{#each items}}
-        {{#if event}}
-            <h2>{{event}}</h2> 
-            <p> 
-                <span>{{name}}</span>
-                <span>{{description}}</span>
-                <span>{{quantity}}</span>
-                <span>{{price}}</span>
-            </p>
-            <a href="/registry">Add More Items</a>
-            <button class="remove-button" onclick="removeFromCart('{{event}}')">Remove</button>
-            <button class="checkout-button" onclick="checkout('{{event}}')">Checkout</button>
-        {{/if}}
-    {{/each}}
-    <p>Total: {{calculateTotal}}</p>
+    <div class="container">
+        <h1>Cart</h1>
+        {{#each items}}
+            {{#if event}}
+                <div class="card">
+                    <div class="card-header">
+                        <h2>{{event}}</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            <span>{{name}}</span>
+                            <span>{{description}}</span>
+                            <span>{{quantity}}</span>
+                            <span>{{price}}</span>
+                        </p>
+                        <a href="/registry" class="btn btn-primary">Add More Items</a>
+                        <button class="btn btn-danger remove-button" onclick="removeFromCart('{{event}}')">Remove</button>
+                        <button class="btn btn-success checkout-button" onclick="checkout('{{event}}')">Checkout</button>
+                    </div>
+                </div>
+            {{/if}}
+        {{/each}}
+        <p>Total: {{calculateTotal}}</p>
+    </div>
 </div>
 <script src="/js/cart.js"></script>
+   
