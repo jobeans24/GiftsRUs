@@ -1,6 +1,6 @@
 
 const router = require("express").Router();
-const { Gift, Purchase, Event } = require("../models");
+const { Gift, Purchased, Event } = require("../models");
 const { withAuth } = require("../utils/auth");
 
 router.get("/", async (req, res) => {
@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
           attributes: ["name", "price", "store", "category", "image"],
         },
         {
-          model: Purchase,
+          model: Purchased,
           attributes: ["id", "date", "quantity", "gift_id"],
         },
       ],
@@ -48,7 +48,7 @@ router.get("/edit/:id", withAuth, async (req, res) => {
           attributes: ["name", "price", "store", "category", "image"],
         },
         {
-          model: Purchase,
+          model: Purchased,
           attributes: ["id", "date", "quantity", "gift_id"],
         },
       ],
