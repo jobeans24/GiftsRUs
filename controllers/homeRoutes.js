@@ -1,4 +1,3 @@
-
 const router = require("express").Router();
 const { User, Gift, Purchased, Event } = require("../models");
 const { withAuth, withoutAuth } = require("../utils/auth");
@@ -17,13 +16,13 @@ router.get("/", async (req, res) => {
         },
       ],
     });
-
+    console.log(eventData);
 
     const events = eventData.map((event) => event.get({ plain: true }));
 
     res.render("home", {
       events,
-      //logged_in: req.session.logged_in,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     console.error("Error fetching events:", err);
@@ -47,11 +46,11 @@ router.get("/edit/:id", withAuth, async (req, res) => {
       include: [
         {
           model: Gift,
-          attributes: ["name", "price", "store", "category", "image"],
+          attributes: ["name", "price", "website"],
         },
         {
           model: Purchased,
-          attributes: ["id", "date", "quantity", "gift_id"],
+          attributes: ["id", "date", "userId", "gift_ids"],
         },
       ],
     });
@@ -75,7 +74,6 @@ router.get("/login", withoutAuth, (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 // sign up
 router.get("/signup", withoutAuth, (req, res) => {
