@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path = require("path");
 const express = require("express");
 const session = require("express-session");
@@ -18,14 +19,12 @@ const PORT = process.env.PORT || 3001;
 
 const SESSION_SECRET = process.env.SESS_SECRET || "Super secret secret";
 
-const SESSION_AGE = process.env.SESS_AGE || 300000;
-
 const hbs = exphbs.create({ helpers });
 
 const sess = {
   secret: SESSION_SECRET,
   cookie: {
-    maxAge: SESSION_AGE,
+    maxAge: 300000,
     httpOnly: true,
     secure: false,
     sameSite: "strict",
@@ -62,7 +61,7 @@ const initializeServer = async () => {
       await seedDatabase();
       console.log("Seeding completed!");
     }
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
     startServer();
   } catch (err) {
     console.error("Error during initialization:", err);

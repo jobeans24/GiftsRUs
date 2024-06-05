@@ -54,9 +54,21 @@ Purchased.belongsTo(Event, {
   foreignKey: "eventId",
 });
 
-Event.hasMany(Gift, { foreignKey: "eventId" });
+Event.hasMany(Gift, { 
+  foreignKey: "eventId",
+ });
 
-Gift.belongsTo(Event, { foreignKey: "eventId" });
+Gift.belongsTo(Event, { 
+  foreignKey: "eventId",
+ });
+
+Gift.hasMany(Purchased, {
+  foreignKey: 'giftId',
+});
+
+Purchased.belongsTo(Gift, {
+  foreignKey: 'giftId',
+});
 
 // Export models and sequelize connection
 module.exports = {
