@@ -12,7 +12,6 @@ router.get("/", async (req, res) => {
           },
         {
           model: Purchased,
-          attributes: ["id", "date", "quantity", "gift_id"],
         },
       ],
     });
