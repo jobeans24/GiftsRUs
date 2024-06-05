@@ -47,7 +47,7 @@ router.get("/edit/:id", withAuth, async (req, res) => {
           attributes: ["name", "price", "store", "category", "image"],
         },
         {
-          model: Purchase,
+          model: Purchased,
           attributes: ["id", "date", "quantity", "gift_id"],
         },
       ],
