@@ -9,8 +9,7 @@ router.get("/", async (req, res) => {
       include: [
         {
           model: Gift,
-          attributes: ["name", "price", "store", "category", "image"],
-        },
+          },
         {
           model: Purchased,
           attributes: ["id", "date", "quantity", "gift_id"],
@@ -19,6 +18,7 @@ router.get("/", async (req, res) => {
     });
 
     const events = eventData.map((event) => event.get({ plain: true }));
+    console.log(events);
 
     res.render("dashboard", {
       events,
