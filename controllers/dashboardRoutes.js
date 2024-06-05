@@ -1,6 +1,6 @@
 
 const router = require("express").Router();
-const { Gift, Purchase, Event } = require("../models");
+const { Gift, Purchased, Event } = require("../models");
 const { withAuth } = require("../utils/auth");
 
 router.get("/", async (req, res) => {
@@ -9,16 +9,15 @@ router.get("/", async (req, res) => {
       include: [
         {
           model: Gift,
-          attributes: ["name", "price", "store", "category", "image"],
-        },
+          },
         {
-          model: Purchase,
-          attributes: ["id", "date", "quantity", "gift_id"],
+          model: Purchased,
         },
       ],
     });
 
     const events = eventData.map((event) => event.get({ plain: true }));
+    console.log(events);
 
     res.render("dashboard", {
       events,
